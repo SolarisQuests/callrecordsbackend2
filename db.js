@@ -9,8 +9,10 @@ const password = process.env.Db_password;
 const Connection = () => {
   // const MONGO_URI = `mongodb+srv://${username}:${password}@cluster0.pvgxw4g.mongodb.net/callrecords?retryWrites=true&w=majority`;
   const MONGO_URI = `mongodb+srv://${username}:${password}@db-mongodb-nyc3-75708-9e7d3949.mongo.ondigitalocean.com/`;
+ // const MONGO_URI = `mongodb+srv://${username}:${password}@db-mongodb-nyc3-75708-9e7d3949.mongo.ondigitalocean.com/callrecords?retryWrites=true&w=majority`;
 
-  mongoose.connect(MONGO_URI, { useNewUrlParser: true });
+
+  mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true,serverSelectionTimeoutMS: 350000, });
 
   mongoose.connection.on("connected", () => {
     console.log("Database connected successfully");
